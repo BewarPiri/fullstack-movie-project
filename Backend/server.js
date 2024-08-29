@@ -1,6 +1,7 @@
 import express from "express"
 
 const app = express()
+const API_KEY = process.env.API_KEY
 
 const port = 3000
 
