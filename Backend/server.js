@@ -13,7 +13,7 @@ const BASE_URL =
 const port = 3000; // Port for the backend
 
 // Endpoint to fetch movies
-app.get("/api/movies/:movie", async (req, res) => {
+app.get("/api/movies/:movie", async (req, res) => {git app
   const userInput = req.params.movie;
   console.log("du har truffet APIet, query: " + userInput);
   if (!userInput) {
