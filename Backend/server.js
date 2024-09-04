@@ -30,11 +30,10 @@ app.get("/api/movies/:movie", async (req, res) => {
     //console.log("dette er filmlista " + JSON.stringify(movieList));
   } catch (error) {
     console.error("Failed to fetch data from OMDB API", error);
-    res.status(500).json(
-      {
-        status: 'error ', 
-        error: "Failed to fetch data from OMDB API" 
-      });
+    res.status(500).json({
+      status: "error ",
+      error: "Failed to fetch data from OMDB API",
+    });
   }
 
   //her har vi movieList klar med alle filmene vi fant fra OMDB APIet.
@@ -47,13 +46,11 @@ app.get("/api/movies/:movie", async (req, res) => {
 
   // alternativ metode til loop (foreach loop) ->
 
-  movieList.forEach(object => {
-    console.log('movie title: ' + object.Title)
+  movieList.forEach((object) => {
+    console.log("movie title: " + object.Title);
   });
 
-
-
-  return res.status(200).json({ status: 'success', movieList: movieList });
+  return res.status(200).json({ status: "success", movieList: movieList });
 });
 
 // Start the server

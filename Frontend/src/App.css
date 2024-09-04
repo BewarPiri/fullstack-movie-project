@@ -1,6 +1,6 @@
 /* App.css */
 .App {
-  background-color: black;
+  background-color: rgb(254, 254, 254);
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@
 }
 
 .font {
-  color: black; /* Makes the text color black */
-  font-size: 2rem; /* Optional: Adjust font size */
+  color: rgb(0, 0, 0); /* Makes the text color black */
+  font-size: rem; /* Optional: Adjust font size */
   font-family: Arial, sans-serif; /* Optional: Change font family */
 }

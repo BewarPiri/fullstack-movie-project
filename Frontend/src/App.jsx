@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "./index.css";
 
 function App() {
   // State to hold the search term
@@ -19,7 +20,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Movie Search</h1>
+      <h1 className="text-4xl font-bold text-red-500">
+        Hello Tailwindscss with react vite
+      </h1>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -28,7 +31,7 @@ function App() {
           placeholder="Search for a movie..."
           className="search-bar"
         />
-        <button type="submit">Search</button>
+        <button className="btn btn-primary">Primary</button>
       </form>
     </div>
   );
