@@ -45,11 +45,11 @@ app.get("/api/movies/:movie", async (req, res) => {
   //   console.log("movie number " + i + ": " + movieList[i].Title);
   // }
 
-  // marcus lærer meg for-each loop
+  // alternativ metode til loop (foreach loop) ->
 
-  // movieList.forEach(object => {
-  //   console.log('movie title: ' + object.Title)
-  // });
+  movieList.forEach(object => {
+    console.log('movie title: ' + object.Title)
+  });
 
 
 
