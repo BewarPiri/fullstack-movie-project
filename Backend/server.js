@@ -10,9 +10,9 @@ const API_KEY = process.env.API_KEY; // API key from .env file
 const BASE_URL =
   process.env.BASE_URL || `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
-const port = 3000; // Port for the backend
+const port = 3000; // Port for backend
 
-// Endpoint to fetch movies
+// Endpoint for å fetche movies
 app.get("/api/movies/:movie", async (req, res) => {
   const userInput = req.params.movie;
   console.log("du har truffet APIet, query: " + userInput);
@@ -53,7 +53,7 @@ app.get("/api/movies/:movie", async (req, res) => {
   return res.status(200).json({ status: "success", movieList: movieList });
 });
 
-// Start the server
+// Start serveren
 app.listen(port, () => {
   console.log(`Backend server listening on port ${port}`);
 });
