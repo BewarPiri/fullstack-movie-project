@@ -1,6 +1,7 @@
 import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
+import cors from "cors";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -11,6 +12,9 @@ const BASE_URL =
   process.env.BASE_URL || `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
 const port = 3000; // Port for backend
+
+//tilgjengeliggjør cors for alle routes
+app.use(cors());
 
 // Endpoint for å fetche movies
 app.get("/api/movies/:movie", async (req, res) => {
@@ -27,30 +31,22 @@ app.get("/api/movies/:movie", async (req, res) => {
     const response = await fetch(`${BASE_URL}s=${userInput}`);
     const data = await response.json();
     movieList = data.Search;
+    movieList.forEach((object) => {
+      console.log("movie title: " + object.Title);
+    });
+
+    return res.status(200).json({ status: "success", movieList: movieList });
     //console.log("dette er filmlista " + JSON.stringify(movieList));
   } catch (error) {
     console.error("Failed to fetch data from OMDB API", error);
-    res.status(500).json({
+    res.status(400).json({
       status: "error ",
       error: "Failed to fetch data from OMDB API",
     });
   }
 
   //her har vi movieList klar med alle filmene vi fant fra OMDB APIet.
-  console.log(movieList.length);
   console.log("alle filmene");
-
-  // for (let i = 0; i < movieList.length; i++) {
-  //   console.log("movie number " + i + ": " + movieList[i].Title);
-  // }
-
-  // alternativ metode til loop (foreach loop) ->
-
-  movieList.forEach((object) => {
-    console.log("movie title: " + object.Title);
-  });
-
-  return res.status(200).json({ status: "success", movieList: movieList });
 });
 
 // Start serveren
