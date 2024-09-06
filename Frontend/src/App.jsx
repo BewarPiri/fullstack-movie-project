@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import "./index.css";
+import { MovieCard } from "./components/MovieCard/MovieCard";
 
 function App() {
   // State to hold the search term
@@ -9,7 +10,7 @@ function App() {
   const [error, setError] = useState(null); // state for å lage errors
   const [loading, setLoading] = useState(true); // state for å håndtere loading statuser¨
 
-  //send HTTP request til backen APIets endpoint for å hente data(fetch)
+  //send HTTP request til backend APIets endpoint for å hente data(fetch)
   const fetchMovies = async (movieTitle) => {
     try {
       setLoading(true); // vis loading state når du fetcher
@@ -34,7 +35,6 @@ function App() {
     console.log(searchTerm);
   }, [searchTerm]);
 
-
   //håndter form submission
   const handleSearch = (e) => {
     e.preventDefault();
@@ -52,36 +52,36 @@ function App() {
   };
 
   //display dataen
-
   return (
-    <div className="App">
-      <h1 className="text-4xl font-bold">Movie Search</h1>
+    <div className="App h-full w-full flex flex-col items-center justify-center">
+      {/* First inner div - takes up 1/4 of the screen height */}
+      <div className="h-1/4 w-full flex-col items-center py-5 bg-blue-200">
+        <h1 className="text-4xl text-center font-bold py-5">Movie Search</h1>
+        <form className="flex flex-col items-center gap-y-5">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search for a movie..."
+          />
+          <button onClick={handleSearch} className="btn btn-active btn-primary">
+            Search
+          </button>
+        </form>
+      </div>
 
-      <form>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for a movie..."
-        />
-        <button onClick={handleSearch} className="btn btn-active btn-primary">
-          Search
-        </button>
-      </form>
-
-      {movies.length > 0 ? (
-        <div className="movie-list">
-          {movies.map((movie) => (
-            <div key={movie.imdbID}>
-              <h2>{movie.Title}</h2>
-              <img src={movie.Poster} alt={movie.Title} />
-              <p>{movie.Year}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No movies found</p>
-      )}
+      {/* Second inner div - Movie List */}
+      <div className="MovieCardsComponent h-3/4 w-full bg-green-200 flex justify-center items-start p-6">
+        {movies.length > 0 ? (
+          <div className="grid grid-cols-5 gap-6 w-full">
+            {movies.map((movie) => (
+              <MovieCard movie={movie}></MovieCard>
+            ))}
+          </div>
+        ) : (
+          <p>No movies found</p>
+        )}
+      </div>
     </div>
   );
 }
