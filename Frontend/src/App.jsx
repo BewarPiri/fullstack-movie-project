@@ -56,14 +56,29 @@ function App() {
     <div className="App h-full w-full flex flex-col items-center justify-center">
       {/* First inner div - takes up 1/4 of the screen height */}
       <div className="h-1/4 w-full flex-col items-center py-5 bg-blue-200">
-        <h1 className="text-4xl text-center font-bold py-5">Movie Search</h1>
+        <h1 className="text-4xl text-center  font-bold py-5">Movie Search</h1>
         <form className="flex flex-col items-center gap-y-5">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for a movie..."
-          />
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              className="grow"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
           <button onClick={handleSearch} className="btn btn-active btn-primary">
             Search
           </button>
@@ -71,7 +86,7 @@ function App() {
       </div>
 
       {/* Second inner div - Movie List */}
-      <div className="MovieCardsComponent h-3/4 w-full bg-green-200 flex justify-center items-start p-6">
+      <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
             {movies.map((movie) => (

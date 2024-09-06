@@ -2,19 +2,20 @@ import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import cors from "cors";
+import { setupDatabaseAndTable } from "./dbSetup.js";
 
-// Load environment variables from .env file
-dotenv.config();
 
+dotenv.config(); // Load environment variables from .env file
 const app = express();
+const port = 3000; // Port for backend
+app.use(cors()); // tilgjengeliggjør cors for alle routes
+
 const API_KEY = process.env.API_KEY; // API key from .env file
 const BASE_URL =
   process.env.BASE_URL || `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
-const port = 3000; // Port for backend
-
-//tilgjengeliggjør cors for alle routes
-app.use(cors());
+  // Run the setup function for database and table
+await setupDatabaseAndTable();
 
 // Endpoint for å fetche movies
 app.get("/api/movies/:movie", async (req, res) => {
