@@ -4,7 +4,7 @@ import "./index.css";
 import { MovieCard } from "./components/MovieCard/MovieCard";
 import { Search } from "./components/SearchComponent/search";
 
-function App() {
+function Searchpage() {
   // State to hold the search term
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]); //state for å lagre movie data
@@ -75,11 +75,11 @@ function App() {
             ))}
           </div>
         ) : (
-          <p>No movies found</p>
+          <p>Movies will appear here!</p>
         )}
       </div>
     </div>
   );
 }
 
-export default App;
+export default Searchpage;
