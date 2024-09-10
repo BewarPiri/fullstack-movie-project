@@ -34,7 +34,7 @@ const createDatabaseIfNotExists = async () => {
     }
   };
   
-  // Function to set up the 'FavouriteMovieList' table if it doesn't exist
+  // Function to set up the 'favouritemovielist' table if it doesn't exist
   const setupTableIfNotExists = async () => {
     const movieDbPool = new Pool({
       user: process.env.PGUSER,
@@ -46,7 +46,7 @@ const createDatabaseIfNotExists = async () => {
   
     const client = await movieDbPool.connect();
     try {
-      // Check if the 'FavouriteMovieList' table exists
+      // Check if the 'favouritemovielist' table exists
       const tableCheckResult = await client.query(`
         SELECT 1 
         FROM information_schema.tables 
@@ -57,7 +57,7 @@ const createDatabaseIfNotExists = async () => {
       if (tableCheckResult.rowCount === 0) {
         // Create the table if it doesn't exist
         await client.query(`
-          CREATE TABLE FavouriteMovieList (
+          CREATE TABLE favouritemovielist (
             Title TEXT NOT NULL,
             Year CHAR(4) NOT NULL,
             imdbID VARCHAR(20) PRIMARY KEY,
@@ -65,9 +65,9 @@ const createDatabaseIfNotExists = async () => {
             Poster TEXT NOT NULL
           );
         `);
-        console.log("Table 'FavouriteMovieList' created successfully.");
+        console.log("Table 'favouritemovielist' created successfully.");
       } else {
-        console.log("Table 'FavouriteMovieList' already exists.");
+        console.log("Table 'favouritemovielist' already exists.");
       }
     } catch (error) {
       console.error("Error checking or creating table:", error.message);
