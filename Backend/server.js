@@ -52,6 +52,7 @@ app.get("/api/movies/:movie", async (req, res) => {
   console.log("alle filmene");
 });
 
+// Endpoint for å fetche "movielist"
 app.get("/api/movielist", async (req, res) => {
   console.log("GET movielist");
   // hent movielist fra databasen og returner den
@@ -64,6 +65,7 @@ app.get("/api/movielist", async (req, res) => {
     })
 });
 
+// Endpoint for å legge til filmer i "favouritemovielist"
 app.post("/api/movielist", async (req, res) => {
   console.log("POST movielist");
 
@@ -85,8 +87,8 @@ app.post("/api/movielist", async (req, res) => {
   })
 });
 
-app.delete("/api/movielist/:id", async(req, res) => {
 //få tak i IDen til movieobjektet, og slett den fra databasen. 
+app.delete("/api/movielist/:id", async(req, res) => {
 });
   
 
