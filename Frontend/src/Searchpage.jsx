@@ -56,6 +56,12 @@ function Searchpage() {
     setSearchTerm(e.target.value);
   };
 
+  //funksjon for å sende en POST request til /api/movielist
+  //med filmdetaljene for å legge de til i databasen.
+  const addToWatchList = async() => {
+
+  }
+
   //display dataen
   return (
     <div className="App h-full w-full flex flex-col items-center justify-center" data-theme="dark">
