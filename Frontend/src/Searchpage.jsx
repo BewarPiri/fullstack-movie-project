@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import "./index.css";
-import { MovieCard } from "./components/MovieCard/MovieCard";
-import { Search } from "./components/SearchComponent/search";
+import { MovieCard } from "./components/MovieCard/MoviecardComponent";
+import { Search } from "./components/SearchComponent/SearchComponent";
+import {Nav} from "./components/navComponent/NavComponent";
 
 function Searchpage() {
   // State to hold the search term
@@ -58,9 +59,27 @@ function Searchpage() {
 
   //funksjon for å sende en POST request til /api/movielist
   //med filmdetaljene for å legge de til i databasen.
-  const addToWatchList = async() => {
+  const addToWatchList = async(movie) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/watchlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ movie }), // Sending movie in the request body
+      });
 
-  }
+      if (!response.ok) {
+        throw new Error('Failed to add movie to watchlist');
+      }
+
+      const data = await response.json();
+      alert(`Movie added to watchlist: ${data.message}`);
+    } catch (error) {
+      console.error('Error adding to watchlist:', error);
+      alert('An error occurred while adding the movie to your watchlist.');
+    }
+  };
 
   //display dataen
   return (
@@ -72,12 +91,17 @@ function Searchpage() {
         handleSearch={handleSearch}
       />
 
+
       {/* Second inner div - Movie List */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
             {movies.map((movie) => (
-              <MovieCard movie={movie}></MovieCard>
+              <MovieCard 
+              movie={movie} 
+              key={movie.imdbID} 
+              addToWatchList={addToWatchList}>
+              </MovieCard>
             ))}
           </div>
         ) : (

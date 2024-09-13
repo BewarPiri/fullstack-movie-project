@@ -1,4 +1,5 @@
 import React from "react";
+import { Nav } from "../navComponent/NavComponent";
 
 // Use props instead of destructuring
 export const Search = (props) => {
@@ -35,6 +36,8 @@ export const Search = (props) => {
           </svg>
         </label>
         <button className="btn btn-active btn-primary hover:scale-110">Search</button>
+                 {/* Render the Nav component here */}
+      <Nav>here is the nav button</Nav>
       </form>
     </div>
   );

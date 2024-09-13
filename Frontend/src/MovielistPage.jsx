@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./index.css";
-import { FavmovieCard } from "./components/MovieCard/FavmovieCard";
+import { FavmovieCard } from "./components/MovieCard/FavmoviecardComponent";
 
 function MovielistPage() {
   const [movies, setMovies] = useState([]); // State to hold movie data

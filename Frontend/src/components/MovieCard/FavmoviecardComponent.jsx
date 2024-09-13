@@ -20,6 +20,7 @@ export const FavmovieCard = (props) => {
       </div>
       <p className="text-gray-600 text-xl font-bold">{props.movie.Year}</p>
       <div className="card-actions flex justify-end mt-4">
+      <button className="btn btn-primary hover:scale-110">remove from list</button>
       </div>
     </div>
   );

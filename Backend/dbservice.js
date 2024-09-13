@@ -70,6 +70,30 @@ export async function getMovieList() {
 
 export async function deleteMovieByID(imdbID) {
 //gå inn i databasen og slett denne IDen. 
+
+// Koble til databasen
+const client = await pool.connect();
+
+try {
+  // SQL-spørring for å slette filmen fra favouritemovielist-tabellen
+  await client.query(`
+    DELETE FROM favouritemovielist
+    WHERE imdbID = $1;
+  `, [imdbID]);
+
+  // Logg en suksessmelding
+  console.log("Film slettet med suksess.");
+  return true;
+
+} catch (error) {
+  // Logg eventuelle feil som oppstår under slettingen
+  console.error("Feil ved sletting av film:", error.message);
+  return false;
+
+} finally {
+  // Frigi alltid databasetilkoblingen tilbake til poolen
+  client.release();
+}
 }
 
 

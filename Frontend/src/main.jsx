@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/SearchPage" element={<Searchpage />} />  {/* Search Page Route */}
+        <Route path="/" element={<Searchpage />} />  {/* Search Page Route */}
         <Route path="/MovielistPage" element={<MovielistPage />} /> {/* Movielist Page Route */}
       </Routes>
     </BrowserRouter>

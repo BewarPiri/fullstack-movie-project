@@ -19,8 +19,15 @@ export const MovieCard = (props) => {
         <h2 className="text-lg font-semibold mb-2">{props.movie.Title}</h2>
       </div>
       <p className="text-gray-600 text-xl font-bold">{props.movie.Year}</p>
+      <p className="text-gray-600 text-xl font-bold">{props.movie.imdbRating}</p>
       <div className="card-actions flex justify-end mt-4">
-        <button className="btn btn-primary hover:scale-110">Add to watchlist</button>
+        {/* Add to Watchlist button calls addToWatchList with movie.id */}
+        <button
+          className="btn btn-primary hover:scale-110"
+          onClick={() => addToWatchList(movie)} // Pass movie to addToWatchList
+        >
+          Add to Watchlist
+        </button>
       </div>
     </div>
   );
