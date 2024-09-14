@@ -42,6 +42,29 @@ function MovielistPage() {
     fetchMovies();
   }, []);
 
+  const removeFromWatchlist = async(imdbID) => {
+    try {
+      const response = await fetch(`http://localhost:3000/ap/movielist/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imdbID }), // Sending movie in the request body
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to remove movie from movielist');
+      }
+      
+    } catch (error) {
+      console.error('Error adding to watchlist:', error);
+      alert('An error occurred while trying to delete a movie from your list');
+    }
+
+    fetchMovies();
+  };
+
+
     // Check if movies are being correctly set
     console.log("Movies state:", movies); 
 
@@ -69,7 +92,8 @@ function MovielistPage() {
                   imdbID: movie.imdbid,
                   type: movie.type,
                   poster: movie.poster,
-                }} 
+                }}
+                removeFromWatchlist={removeFromWatchlist}
               />
             ))}
           </div>

@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 import cors from "cors";
 import { setupDatabaseAndTable } from "./dbSetup.js";
-import { addMovie, getMovieList } from "./dbservice.js";
+import { addMovie, getMovieList, deleteMovieByID } from "./dbservice.js";
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
@@ -85,7 +85,24 @@ app.post("/api/movielist", async (req, res) => {
 });
 
 //få tak i IDen til movieobjektet, og slett den fra databasen.
-app.delete("/api/movielist/:id", async (req, res) => {});
+app.delete("/ap/movielist/", async (req, res) => {
+  const imdbID = req.body.imdbID;
+
+  
+  const result = await deleteMovieByID(imdbID);
+  if(!result) {
+    res.status(500).json({
+      status: "error",
+      error: "failed to delete movie from the watchlist",
+    });
+  }
+  
+  return res.status(200).json({
+    status: "success",
+    message: "movie successfully removed from watchlist",
+  });
+  
+});
 
 // Start serveren
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 import React from "react";
 
 // This component is for rendering individual movie cards
-export const FavmovieCard = ({ movie, deleteMovieByID }) => {
+export const FavmovieCard = ({ movie, removeFromWatchlist }) => {
   return (
     <div
       className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
@@ -21,9 +21,9 @@ export const FavmovieCard = ({ movie, deleteMovieByID }) => {
       <p className="text-gray-600 text-xl font-bold">{movie.year}</p>
       <button
           className="btn btn-primary hover:scale-110"
-          onClick={() => deleteMovieByID(movie.imdbID)}  // Correctly pass movie to addToWatchList
+          onClick={() => {removeFromWatchlist(movie.imdbID)}}
         >
-          Remove from list
+          remove from watchlist
         </button>
     </div>
   );
