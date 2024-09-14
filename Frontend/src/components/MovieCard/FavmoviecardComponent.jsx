@@ -19,12 +19,14 @@ export const FavmovieCard = ({ movie, removeFromWatchlist }) => {
         <h2 className="text-lg font-semibold mb-2">{movie.title}</h2>
       </div>
       <p className="text-gray-600 text-xl font-bold">{movie.year}</p>
+      <div className="card-actions flex justify-end mt-4">
       <button
           className="btn btn-primary hover:scale-110"
           onClick={() => {removeFromWatchlist(movie.imdbID)}}
         >
-          remove from watchlist
+          Remove
         </button>
+        </div>
     </div>
   );
 };

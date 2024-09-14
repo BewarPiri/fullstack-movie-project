@@ -20,10 +20,9 @@ export const MovieCard = ({ movie, addToWatchList }) => {  // Correctly destruct
       </div>
       <p className="text-gray-600 text-xl font-bold">{movie.Year}</p>
       <div className="card-actions flex justify-end mt-4">
-        {/* Add to Watchlist button calls addToWatchList with the movie object */}
         <button
           className="btn btn-primary hover:scale-110"
-          onClick={() => addToWatchList(movie)}  // Correctly pass movie to addToWatchList
+          onClick={() => addToWatchList(movie)}
         >
           Add to Watchlist
         </button>
