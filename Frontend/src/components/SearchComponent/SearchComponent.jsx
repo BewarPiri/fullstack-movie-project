@@ -5,9 +5,10 @@ import { Nav } from "../navComponent/NavComponent";
 export const Search = (props) => {
   return (
     <div
-      className="h-1/4 w-full flex-col items-center py-5"
+      className="h-1/4 w-full flex-col items-center pb-5"
       data-theme="valentine"
     >
+      <Nav></Nav>
       <h1 className="text-6xl font-extrabold text-center py-6">Movie Search</h1>
 
       <form
@@ -35,9 +36,9 @@ export const Search = (props) => {
             />
           </svg>
         </label>
-        <button className="btn btn-active btn-primary hover:scale-110">Search</button>
-                 {/* Render the Nav component here */}
-      <Nav>here is the nav button</Nav>
+        <button className="btn btn-active btn-primary hover:scale-110">
+          Search
+        </button>
       </form>
     </div>
   );

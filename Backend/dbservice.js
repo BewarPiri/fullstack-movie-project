@@ -11,7 +11,6 @@ const { Pool } = pkg;
       });
 
 export async function addMovie(movie) {
-
   // Koble til databasen
   const client = await pool.connect();
   
@@ -22,7 +21,7 @@ export async function addMovie(movie) {
       INSERT INTO favouritemovielist (title, year, imdbID, type, poster)
       VALUES ($1, $2, $3, $4, $5)
       ON CONFLICT (imdbID) DO NOTHING;
-    `, [movie.title, movie.year, movie.imdbID, movie.type, movie.poster]);
+    `, [movie.Title, movie.Year, movie.imdbID, movie.Type, movie.Poster]);
 
     // Logg en suksessmelding
     console.log("Film lagt til med suksess.");
@@ -30,8 +29,8 @@ export async function addMovie(movie) {
     
   } catch (error) {
     // Logg eventuelle feil som oppstår under innsettingen
-    console.error("Feil ved innsetting av film:", error.message);
-    return false;
+    console.error("Feil ved innsetting av film:", error);
+    console.error("Error details:", error.stack); // More details
     
   } finally {
     // Frigi alltid databasetilkoblingen tilbake til poolen
@@ -54,8 +53,8 @@ export async function getMovieList() {
   const movieList = result.rows;
 
     // Logg en suksessmelding
-    console.log("hentet movielist: " + JSON.stringify(movieList));
-    return movieList;
+    // console.log("hentet movielist: " + JSON.stringify(movieList));
+    return JSON.stringify(movieList);
 
   } catch (error) {
     // Logg eventuelle feil som oppstår under innsettingen

@@ -2,50 +2,75 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./index.css";
 import { FavmovieCard } from "./components/MovieCard/FavmoviecardComponent";
+import { Nav } from "./components/navComponent/NavComponent";
 
 function MovielistPage() {
-  const [movies, setMovies] = useState([]); // State to hold movie data
-  const [error, setError] = useState(null); // State for error handling
-  const [loading, setLoading] = useState(true); // State for loading status
+  const [movies, setMovies] = useState([]); // state for å lagre movie data 
+  const [error, setError] = useState(null); // State for å lage errors
+  const [loading, setLoading] = useState(true); // State for å håndtere loading
 
   // Function to fetch the movie list from the backend API
   const fetchMovies = async () => {
     try {
-      setLoading(true); // Set loading to true when fetching data
-      setError(null); // Reset error state
-      const response = await fetch("http://localhost:3000/api/movielist"); // endpoint for movielist
+      setLoading(true); // Set loading to true
+      setError(null); // Reset errors
+      const response = await fetch("http://localhost:3000/api/movielist"); // Fetch data
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data = await response.json();
-      setMovies(data.movieList); // Set fetched movies inn i en "state"
+      const data = await response.json(); // Parse the JSON response
+      console.log("Fetched data:", data);  // Log the fetched data
+  
+      // parse movielist fra en string til et array
+      const movieList = typeof data.movieList === 'string'
+        ? JSON.parse(data.movieList)
+        : data.movieList;
+  
+      setMovies(movieList); // Set the movies state with the parsed array
+      console.log("movie set: ", movieList); // Log the movies state
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error.message);
     } finally {
-      setLoading(false); 
+      setLoading(false); // Set loading to false
     }
   };
+  
 
   // useEffect to fetch data when the component mounts
   useEffect(() => {
     fetchMovies();
   }, []);
 
+    // Check if movies are being correctly set
+    console.log("Movies state:", movies); 
+
   // vis enten loading, error, eller movies
   return (
     <div>
-      <h1 className="text-6xl font-extrabold text-center py-6" data-theme="valentine">Favorite Movie List</h1>
+    <div className="pb-5" data-theme="valentine">
+    <Nav/>
+    <h1 className="text-6xl font-extrabold text-center py-6" data-theme="valentine">Favorite Movie List</h1>
+    </div>
 
-      {loading && <p>Loading...</p>} {/* vis loading status */}
-      {error && <p>Error: {error}</p>} {/* Show error message if any */}
+      {loading && <p>Loading...</p>} 
+      {error && <p>Error: {error}</p>}
 
       {/* Display the movie list */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
             {movies.map((movie) => (
-              <FavmovieCard key={movie.id} movie={movie} /> // Added key prop
+              <FavmovieCard 
+                key={movie.imdbid} // Update key to use imdbid
+                movie={{
+                  title: movie.title,
+                  year: movie.year,
+                  imdbID: movie.imdbid,
+                  type: movie.type,
+                  poster: movie.poster,
+                }} 
+              />
             ))}
           </div>
         ) : (

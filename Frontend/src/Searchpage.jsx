@@ -3,7 +3,6 @@ import "./App.css";
 import "./index.css";
 import { MovieCard } from "./components/MovieCard/MoviecardComponent";
 import { Search } from "./components/SearchComponent/SearchComponent";
-import {Nav} from "./components/navComponent/NavComponent";
 
 function Searchpage() {
   // State to hold the search term
@@ -12,19 +11,24 @@ function Searchpage() {
   const [error, setError] = useState(null); // state for å lage errors
   const [loading, setLoading] = useState(true); // state for å håndtere loading statuser¨
 
+
   //send HTTP request til backend APIets endpoint for å hente data(fetch)
   const fetchMovies = async (movieTitle) => {
     try {
       setLoading(true); // vis loading state når du fetcher
       setError(null); //reset error staten
+
+      // sender en request til backenden min
       const response = await fetch(
         `http://localhost:3000/api/movies/${movieTitle}`
       );
+
+      //hvis det er en error med requesten, så viser vi en error.
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data = await response.json();
-      setMovies(data.movieList); // er dette riktig?!
+      const data = await response.json(); // konverter responsen til data (altså et javascript objekt)
+      setMovies(data.movieList);
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error.message);
@@ -61,7 +65,7 @@ function Searchpage() {
   //med filmdetaljene for å legge de til i databasen.
   const addToWatchList = async(movie) => {
     try {
-      const response = await fetch('http://localhost:3000/api/watchlist', {
+      const response = await fetch(`http://localhost:3000/api/movielist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +78,7 @@ function Searchpage() {
       }
 
       const data = await response.json();
-      alert(`Movie added to watchlist: ${data.message}`);
+      
     } catch (error) {
       console.error('Error adding to watchlist:', error);
       alert('An error occurred while adding the movie to your watchlist.');
@@ -84,15 +88,12 @@ function Searchpage() {
   //display dataen
   return (
     <div className="App h-full w-full flex flex-col items-center justify-center" data-theme="dark">
-      {/* First inner div - takes up 1/4 of the screen height(search component) */}
       <Search
         searchTerm={searchTerm}
         handleInputChange={handleInputChange}
         handleSearch={handleSearch}
       />
 
-
-      {/* Second inner div - Movie List */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
@@ -100,8 +101,7 @@ function Searchpage() {
               <MovieCard 
               movie={movie} 
               key={movie.imdbID} 
-              addToWatchList={addToWatchList}>
-              </MovieCard>
+              addToWatchList={addToWatchList}/>
             ))}
           </div>
         ) : (
