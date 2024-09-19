@@ -59,7 +59,7 @@ const createDatabaseIfNotExists = async () => {
         await client.query(`
           CREATE TABLE favouritemovielist (
             Title TEXT NOT NULL,
-            Year CHAR(4) NOT NULL,
+            Year VARCHAR(16) NOT NULL,
             imdbID VARCHAR(20) PRIMARY KEY,
             Type TEXT NOT NULL,
             Poster TEXT NOT NULL

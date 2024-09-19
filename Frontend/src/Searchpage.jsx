@@ -41,7 +41,7 @@ function Searchpage() {
 // Hver gang søketeksten endrer seg, blir den nye teksten skrevet ut i konsollen (for debugging eller testing).
   useEffect(() => {
     console.log(searchTerm);
-  }, [searchTerm]);
+  },[searchTerm]);
 
   //håndter form submission
   const handleSearch = (e) => {
