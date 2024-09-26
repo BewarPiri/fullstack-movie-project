@@ -19,7 +19,7 @@ export async function addMovie(movie) {
     const {Title, Year, imdbID, Type, Poster} = movie;
     // SQL-spørring for å sette inn filmen i favouritemovielist-tabellen
     // $1, $2, osv. erfor å forhindre SQL-injeksjon
-    await client.query(
+    const result = await client.query(
       `
       INSERT INTO favouritemovielist (title, year, imdbID, type, poster)
       VALUES ($1, $2, $3, $4, $5)
@@ -65,7 +65,7 @@ export async function getMovieList() {
     const movieList = result.rows;
 
     // Logg en suksessmelding
-if (result.length > 0) {
+if (result.rows.length > 0) {
   console.log(`Movielist hentet med sukksess. Antall filmer: ${movieList.length}`)
 } else {
   console.log("ingen filmer funnet i databasen.")
