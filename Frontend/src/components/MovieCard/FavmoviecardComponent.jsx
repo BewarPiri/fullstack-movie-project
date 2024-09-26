@@ -5,13 +5,13 @@ export const FavmovieCard = ({ movie, removeFromWatchlist }) => {
   return (
     <div
       className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
-      key={movie.imdbID}  // Use movie object directly
+      key={movie.imdbID} // Use movie object directly
       data-theme="valentine"
     >
       <figure>
         <img
-          src={movie.poster}  
-          alt={movie.title}  
+          src={movie.poster}
+          alt={movie.title}
           className="w-full h-auto mb-4 rounded"
         />
       </figure>
@@ -20,13 +20,15 @@ export const FavmovieCard = ({ movie, removeFromWatchlist }) => {
       </div>
       <p className="text-gray-600 text-xl font-bold">{movie.year}</p>
       <div className="card-actions flex justify-end mt-4">
-      <button
+        <button
           className="btn btn-primary hover:scale-110"
-          onClick={() => {removeFromWatchlist(movie.imdbID)}}
+          onClick={() => {
+            removeFromWatchlist(movie.imdbID);
+          }}
         >
           Remove
         </button>
-        </div>
+      </div>
     </div>
   );
 };

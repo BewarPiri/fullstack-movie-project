@@ -1,11 +1,12 @@
 import React from "react";
 
 // This component is only for rendering individual movie cards
-export const MovieCard = ({ movie, addToWatchList }) => {  // Correctly destructure props here
+export const MovieCard = ({ movie, addToWatchList }) => {
+  // Correctly destructure props here
   return (
     <div
       className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
-      key={movie.imdbID}  // Use movie object directly
+      key={movie.imdbID} // Use movie object directly
       data-theme="valentine"
     >
       <figure>

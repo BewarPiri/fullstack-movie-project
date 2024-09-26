@@ -7,7 +7,7 @@ import { addMovie, getMovieList, deleteMovieByID } from "./dbservice.js";
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
-const port = 3000; // Port for backend
+const port = 3000;
 app.use(cors()); // tilgjengeliggjør cors for alle routes
 app.use(express.json()); // ta imot request body som json.
 
@@ -33,9 +33,6 @@ app.get("/api/movies/:movie", async (req, res) => {
     const response = await fetch(`${BASE_URL}s=${userInput}`);
     const data = await response.json();
     movieList = data.Search;
-    // movieList.forEach((object) => {
-    //   console.log("movie title: " + object.Title);
-    // });
 
     return res.status(200).json({ status: "success", movieList: movieList });
     //console.log("dette er filmlista " + JSON.stringify(movieList));
@@ -55,18 +52,15 @@ app.get("/api/movies/:movie", async (req, res) => {
 app.get("/api/movielist", async (req, res) => {
   // hent movielist fra databasen og returner den
   const movieList = await getMovieList();
-  return res
-    .status(200)
-    .json({
-      status: "success",
-      message: "her er movielist",
-      movieList: movieList,
-    });
+  return res.status(200).json({
+    status: "success",
+    message: "her er movielist",
+    movieList: movieList,
+  });
 });
 
 // Endpoint for å legge til filmer i "favouritemovielist"
 app.post("/api/movielist", async (req, res) => {
-
   //få tak i movie-object fra request body.
   const movie = req.body.movie;
 
@@ -88,20 +82,18 @@ app.post("/api/movielist", async (req, res) => {
 app.delete("/ap/movielist/", async (req, res) => {
   const imdbID = req.body.imdbID;
 
-  
   const result = await deleteMovieByID(imdbID);
-  if(!result) {
+  if (!result) {
     res.status(500).json({
       status: "error",
       error: "failed to delete movie from the watchlist",
     });
   }
-  
+
   return res.status(200).json({
     status: "success",
     message: "movie successfully removed from watchlist",
   });
-  
 });
 
 // Start serveren

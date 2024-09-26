@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
-// Rename the component to "Nav"
 export const Nav = () => {
   return (
-    <div className="navbar bg-base-100 top-0 left-0 text-6xl font-extrabold text-center" data-theme="valentine">
+    <div
+      className="navbar bg-base-100 top-0 left-0 text-6xl font-extrabold text-center"
+      data-theme="valentine"
+    >
       {/* Align items to the left with justify-start */}
       <div>
         <div className="dropdown">

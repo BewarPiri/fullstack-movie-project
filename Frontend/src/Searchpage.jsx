@@ -11,7 +11,6 @@ function Searchpage() {
   const [error, setError] = useState(null); // state for å lage errors
   const [loading, setLoading] = useState(true); // state for å håndtere loading statuser¨
 
-
   //send HTTP request til backend APIets endpoint for å hente data(fetch)
   const fetchMovies = async (movieTitle) => {
     try {
@@ -37,11 +36,11 @@ function Searchpage() {
     }
   };
 
-// useEffect-funksjonen passer på søketeksten ("searchTerm").
-// Hver gang søketeksten endrer seg, blir den nye teksten skrevet ut i konsollen (for debugging eller testing).
+  // useEffect-funksjonen passer på søketeksten ("searchTerm").
+  // Hver gang søketeksten endrer seg, blir den nye teksten skrevet ut i konsollen (for debugging eller testing).
   useEffect(() => {
     console.log(searchTerm);
-  },[searchTerm]);
+  }, [searchTerm]);
 
   //håndter form submission
   const handleSearch = (e) => {
@@ -55,39 +54,40 @@ function Searchpage() {
     }
   };
 
-// handleInputChange-funksjonen blir aktivert når brukeren skriver i søkefeltet.
-// Den sørger for at søketeksten oppdateres etter hvert som brukeren skriver.
+  // handleInputChange-funksjonen blir aktivert når brukeren skriver i søkefeltet.
+  // Den sørger for at søketeksten oppdateres etter hvert som brukeren skriver.
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   //funksjon for å sende en POST request til /api/movielist
   //med filmdetaljene for å legge de til i databasen.
-  const addToWatchList = async(movie) => {
+  const addToWatchList = async (movie) => {
     try {
       const response = await fetch(`http://localhost:3000/api/movielist`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ movie }), // Sending movie in the request body
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add movie to watchlist');
+        throw new Error("Failed to add movie to watchlist");
       }
 
       const data = await response.json();
-      
     } catch (error) {
-      console.error('Error adding to watchlist:', error);
-      alert('An error occurred while adding the movie to your watchlist.');
+      console.error("Error adding to watchlist:", error);
+      alert("An error occurred while adding the movie to your watchlist.");
     }
   };
-
-  //display dataen
+  
   return (
-    <div className="App h-full w-full flex flex-col items-center justify-center" data-theme="dark">
+    <div
+      className="App h-full w-full flex flex-col items-center justify-center"
+      data-theme="dark"
+    >
       <Search
         searchTerm={searchTerm}
         handleInputChange={handleInputChange}
@@ -98,10 +98,11 @@ function Searchpage() {
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
             {movies.map((movie) => (
-              <MovieCard 
-              movie={movie} 
-              key={movie.imdbID} 
-              addToWatchList={addToWatchList}/>
+              <MovieCard
+                movie={movie}
+                key={movie.imdbID}
+                addToWatchList={addToWatchList}
+              />
             ))}
           </div>
         ) : (
