@@ -83,7 +83,7 @@ function MovielistPage() {
       </div>
 
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+      {error && <p>Error: {error}</p>}q 
 
       {/* Display the movie list */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">

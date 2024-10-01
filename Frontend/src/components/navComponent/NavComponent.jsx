@@ -50,6 +50,9 @@ export const Nav = () => {
           <li>
             <Link to="/MovielistPage">Movielist</Link>
           </li>
+          <li>
+            <Link to="/RecommendedMovies">Recommendations</Link>
+          </li>
         </ul>
       </div>
     </div>

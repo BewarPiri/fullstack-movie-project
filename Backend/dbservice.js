@@ -28,7 +28,7 @@ export async function addMovie(movie) {
       [Title, Year, imdbID, Type, Poster]
     );
 
-    if (result.rows.length > 0) {
+    if (result.rows.length >= 0) {
       console.log("film lagt til med sukkess.");
       return { success: true, message: "Film lagt til med suksess", movie: result.rows[0]};
     } else {
@@ -126,3 +126,5 @@ export async function deleteMovieByID(imdbid) {
    if (client) client.release();
   }
 }
+
+

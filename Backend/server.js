@@ -96,6 +96,17 @@ app.delete("/ap/movielist/", async (req, res) => {
   });
 });
 
+app.get('/api/recommendations', (req, res) => {
+  const recommendations = [
+    { imdbID: "tt0111161", title: "The Shawshank Redemption", year: "1994", poster: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" },
+    { imdbID: "tt0068646", title: "The Godfather", year: "1972", poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" },
+    { imdbID: "tt0071562", title: "The Godfather: Part II", year: "1974", poster: "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" },
+    { imdbID: "tt0468569", title: "The Dark Knight", year: "2008", poster: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" },
+  ];
+
+  res.json(recommendations);
+});
+
 // Start serveren
 app.listen(port, () => {
   console.log(`Backend server listening on port ${port}`);
