@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Nav } from "./components/navComponent/NavComponent";
 
-const RecommendedMovies = () => {
+
+const RecommendedMoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -33,14 +35,22 @@ const RecommendedMovies = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Recommended Movies</h1>
+    <div className="p-4" >
+          <div className="pb-5" data-theme="valentine">
+        <Nav />
+        <h1
+          className="text-6xl font-extrabold text-center py-6"
+          data-theme="valentine"
+        >
+          Recommendations
+        </h1>
+      </div>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {movies.length === 0 ? (
         <p className="text-center">No recommendations available.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5">
           {movies.map((movie) => (
             <div
               className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
@@ -67,14 +77,8 @@ const RecommendedMovies = () => {
           ))}
         </div>
       )}
-      <nav className="mt-8">
-        <ul className="flex justify-center space-x-4">
-          <li><Link to="/" className="btn btn-secondary">Back to Search page</Link></li>
-          <li><Link to="/MovielistPage" className="btn btn-secondary">Favorite movielist page</Link></li>
-        </ul>
-      </nav>
     </div>
   );
 };
 
-export default RecommendedMovies;
+export default RecommendedMoviesPage;

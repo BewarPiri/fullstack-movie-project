@@ -37,6 +37,9 @@ export const Nav = () => {
             <li>
               <Link to="/MovielistPage">Movielist</Link>
             </li>
+            <li>
+              <Link to="/RecommendedMoviesPage">Recommendations</Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -51,7 +54,7 @@ export const Nav = () => {
             <Link to="/MovielistPage">Movielist</Link>
           </li>
           <li>
-            <Link to="/RecommendedMovies">Recommendations</Link>
+            <Link to="/RecommendedMoviesPage">Recommendations</Link>
           </li>
         </ul>
       </div>

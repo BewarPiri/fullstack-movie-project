@@ -71,7 +71,7 @@ function MovielistPage() {
 
   // vis enten loading, error, eller movies
   return (
-    <div>
+    <div className="p-4">
       <div className="pb-5" data-theme="valentine">
         <Nav />
         <h1
@@ -83,7 +83,7 @@ function MovielistPage() {
       </div>
 
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}q 
+      {error && <p>Error: {error}</p>} 
 
       {/* Display the movie list */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">

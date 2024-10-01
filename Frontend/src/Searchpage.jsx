@@ -85,7 +85,7 @@ function Searchpage() {
   
   return (
     <div
-      className="App h-full w-full flex flex-col items-center justify-center"
+      className="App h-full w-full flex flex-col items-center justify-center p-4"
       data-theme="dark"
     >
       <Search
