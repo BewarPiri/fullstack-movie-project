@@ -1,5 +1,4 @@
 import pkg from "pg"; // Import the default export from 'pg'
-
 const { Pool } = pkg;
 
 // Function to create the 'movies_db' database if it doesn't exist

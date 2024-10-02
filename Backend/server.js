@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { setupDatabaseAndTable } from "./dbSetup.js";
 import { addMovie, getMovieList, deleteMovieByID } from "./dbservice.js";
+import getRecommendations from "./AIservices.js";
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
@@ -96,15 +97,14 @@ app.delete("/ap/movielist/", async (req, res) => {
   });
 });
 
-app.get('/api/recommendations', (req, res) => {
-  const recommendations = [
-    { imdbID: "tt0111161", title: "The Shawshank Redemption", year: "1994", poster: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" },
-    { imdbID: "tt0068646", title: "The Godfather", year: "1972", poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" },
-    { imdbID: "tt0071562", title: "The Godfather: Part II", year: "1974", poster: "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" },
-    { imdbID: "tt0468569", title: "The Dark Knight", year: "2008", poster: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" },
-  ];
-
-  res.json(recommendations);
+app.get('/api/recommendations', async (req, res) => {
+  const recommendedList = await getRecommendations();
+  console.log(recommendedList);
+  return res.status(200).json({
+    status: "success",
+    message: "her er recommendations",
+    recommendedList: recommendedList,
+  });
 });
 
 // Start serveren
