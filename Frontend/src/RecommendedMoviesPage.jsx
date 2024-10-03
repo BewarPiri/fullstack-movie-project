@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Nav } from "./components/navComponent/NavComponent";
+import { MovieCard } from "./components/MovieCard/MoviecardComponent";
 
 
 const RecommendedMoviesPage = () => {
@@ -19,8 +20,16 @@ const RecommendedMoviesPage = () => {
       }
 
       const data = await response.json();
-      setMovies(data);
-      console.log("Movies set:", data);
+      console.log("fetched data :", data)
+
+      if(data.status === "success" && Array.isArray(data.recommendedList)) {
+        setMovies(data.recommendedList);
+      } else {
+        console.error("recommendedList is not an array:", data.recommendedList);
+        setError("No recommendations available.")
+      }
+      // setMovies(data.recommendedList);
+      // console.log("Movies set:", data.recommendedList);
     } catch (error) {
       console.error("Error fetching recommendations:", error);
       setError("Failed to load recommendations. Please try again later.");
@@ -32,6 +41,7 @@ const RecommendedMoviesPage = () => {
   useEffect(() => {
     fetchRecommendations();
   }, []);
+  
 
   return (
     <div className="p-4" >
@@ -44,39 +54,25 @@ const RecommendedMoviesPage = () => {
           Recommendations
         </h1>
       </div>
+
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {movies.length === 0 ? (
-        <p className="text-center">No recommendations available.</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5">
-        console.log(movies)
-          {movies.map((movie) => (
-            <div
-              className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
-              key={movie.Title}
-              data-theme="valentine"
-            >
-              <figure>
-                <img
-                  src={movie.poster}
-                  alt={movie.title}
-                  className="w-full h-auto mb-4 rounded"
-                />
-              </figure>
-              <div className="card-body flex flex-col flex-grow">
-                <h2 className="text-lg font-semibold mb-2">{movie.title}</h2>
-              </div>
-              <p className="text-gray-600 text-xl font-bold">{movie.year}</p>
-              <div className="card-actions flex justify-end mt-4">
-                <button className="btn btn-primary hover:scale-110">
-                  Add to Watchlist
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+
+      <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
+        {movies.length > 0 ? (
+          <div className="grid grid-cols-5 gap-6 w-full">
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie.imdbID}
+                movie={movie}
+              />
+            ))}
+          </div>
+        ) : (
+          !loading && <p>recommended movies will appear here!</p>
+        )}
+      </div>
+
     </div>
   );
 };

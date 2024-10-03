@@ -85,13 +85,12 @@ function MovielistPage() {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>} 
 
-      {/* Display the movie list */}
       <div className="MovieCardsComponent h-3/4 w-full bg-black-200 flex justify-center items-start p-6">
         {movies.length > 0 ? (
           <div className="grid grid-cols-5 gap-6 w-full">
             {movies.map((movie) => (
               <FavmovieCard
-                key={movie.imdbid} // Update key to use imdbid
+                key={movie.imdbid}
                 movie={{
                   title: movie.title,
                   year: movie.year,
@@ -104,7 +103,7 @@ function MovielistPage() {
             ))}
           </div>
         ) : (
-          !loading && <p>Favorite movies will appear here!</p> // Show message if no movies
+          !loading && <p>Favorite movies will appear here!</p>
         )}
       </div>
     </div>

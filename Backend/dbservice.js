@@ -87,6 +87,17 @@ return movieList;
   }
 }
 
+export async function getMovieListTitles() {
+  const movieList = await getMovieList();
+  let movieTitles = [];
+  for ( let i = 0; i < movieList.length; i++) {
+    let title = movieList[i].title
+    console.log("found new favorite title " + title)
+    movieTitles.push(title);
+  }
+  return movieTitles;
+}
+
 export async function deleteMovieByID(imdbid) {
   //gå inn i databasen og slett denne IDen.
   // Koble til databasen

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { setupDatabaseAndTable } from "./dbSetup.js";
 import { addMovie, getMovieList, deleteMovieByID } from "./dbservice.js";
-import getRecommendations from "./AIservices.js";
+import {getRecommendations, getAiRecommendations} from "./AIservices.js";
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
@@ -106,6 +106,17 @@ app.get('/api/recommendations', async (req, res) => {
     recommendedList: recommendedList,
   });
 });
+
+app.get('/AiTest', async (req, res) => {
+  const recommendedTitles = await getAiRecommendations();
+  console.log(recommendedTitles);
+  return res.status(200).json({
+    status: "success",
+    message: "her er recommendations fra AI",
+    recommendedTitles: recommendedTitles,
+  });
+});
+
 
 // Start serveren
 app.listen(port, () => {
