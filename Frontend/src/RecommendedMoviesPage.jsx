@@ -50,10 +50,11 @@ const RecommendedMoviesPage = () => {
         <p className="text-center">No recommendations available.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5">
+        console.log(movies)
           {movies.map((movie) => (
             <div
               className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"
-              key={movie.imdbID}
+              key={movie.Title}
               data-theme="valentine"
             >
               <figure>
