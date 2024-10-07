@@ -12,3 +12,31 @@
 
 
 ## Frontend
+
+Stack:
+Frontend:
+
+JavaScript
+React
+Tailwind CSS
+Daisy UI
+Backend:
+
+Node.js
+Express.js
+PostgreSQL
+APIs:
+
+OMDB API (Movie search)
+OpenAI API (AI-based movie recommendations)
+Development Tools:
+
+Vite (Build tool)
+Nodemon (Development server)
+Postman (API testing)
+
+Stack:
+PERN: PostgreSQL, Express.js, React, Node.js
+
+Package Manager:
+npm
