@@ -2,6 +2,7 @@ import React from "react";
 
 export const aiRecommendationCard = ({ movie, addToWatchList }) => {
 
+
   return (
     <div
       className="p-4 rounded-lg shadow-md text-center hover:scale-110 flex flex-col justify-between h-full"

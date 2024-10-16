@@ -97,15 +97,17 @@ app.delete("/ap/movielist/", async (req, res) => {
   });
 });
 
+//endpoint for å få tak i hele Movieobjectet og generere et AI svar
 app.get('/api/recommendations', async (req, res) => {
-  const recommendedList = await getRecommendations();
-  console.log(recommendedList);
+  const recommendationObject = await getRecommendations();
+  console.log("Recommendations to be sent to frontend: ", JSON.stringify(recommendationObject));
   return res.status(200).json({
     status: "success",
-    message: "her er recommendations",
-    recommendedList: recommendedList,
+    message: recommendationObject.message,
+    recommendedMovies: recommendationObject.recommendedMovies
   });
 });
+
 
 app.get('/AiTest', async (req, res) => {
   const recommendedTitles = await getAiRecommendations();
