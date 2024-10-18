@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Nav } from "./components/navComponent/NavComponent";
 import { MovieCard } from "./components/MovieCard/MoviecardComponent";
-import ChatBubble from "./components/ChatBubble/chatBubble";
+import ChatBubble from "./components/ChatBubble/ChatBubble";
 
 const RecommendedMoviesPage = () => {
   const [movies, setMovies] = useState([]);

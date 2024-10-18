@@ -9,7 +9,9 @@ import {getRecommendations, getAiRecommendations} from "./AIservices.js";
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 const port = 3000;
-app.use(cors()); // tilgjengeliggjør cors for alle routes
+app.use(cors({
+  origin: '*', // Allow all origins, or specify the frontend URL
+}));
 app.use(express.json()); // ta imot request body som json.
 
 const API_KEY = process.env.API_KEY; // API key from .env file

@@ -1,0 +1,28 @@
+
+# Node modules
+node_modules
+npm-debug.log
+
+# Environment variables
+.env
+
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# Build artifacts
+dist
+build
+
+# Test coverage
+coverage
+
+# Logs
+logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore any other files you don't need in your image
