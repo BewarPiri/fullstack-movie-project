@@ -19,7 +19,7 @@ const BASE_URL =
   process.env.BASE_URL || `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
 // Run the setup function for database and table
-await setupDatabaseAndTable();
+ setupDatabaseAndTable();
 
 // Endpoint for å fetche movies
 app.get("/api/movies/:movie", async (req, res) => {

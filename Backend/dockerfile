@@ -1,16 +1,24 @@
-FROM node:alpine
+FROM node:18.10.0-alpine 
+#alpine er en linux distribusjon, det er en veldig minimal versjon av linux. I tillegg her trenger vi Node installert, altså vi bruker node sin versjon av alpine. 
 
-# Install curl
+# Install curl. Vi bruker for testing, spesielt teste API-call. 
 RUN apk add --no-cache curl
 
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
-
 # Copy the rest of the application
 COPY . .
 
+# install dependencies
+RUN npm install --verbose
+
 # Start your application
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npm start"]
+
+
+
+# Denne filen er for å bygge container-image til backend. Senere kan vi kjøre container-image ved bruk av docker. 
+# Denne filen forklarer hvordan docker-imaget skal bli bygget. Container-teknologi er et isolert opertativsystem som 
+# KUN kjører applikasjoner på pcen din lokalt i sitt operativsystem, uten å tilgang ut til resten av maskinen/operativsystemet. 
+
+
